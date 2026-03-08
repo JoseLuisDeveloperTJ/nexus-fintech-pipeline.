@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: "Fintech Nexus transactions already flattened"
+    columns:
+      - name: transaction_id
+        tests:
+          - unique    # Rule 2: Cannot have duplicate transaction IDs
+          - not_null  # Rule 3: The ID is mandatory
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['completed', 'pending', 'failed'] # Rule 4: Only these statuses are valid
