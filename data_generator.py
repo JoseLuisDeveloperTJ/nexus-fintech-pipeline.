@@ -5,8 +5,8 @@ import boto3
 from datetime import datetime
 
 # CONFIGURATION
-BUCKET_NAME = "nexus-fintech-data-lake" 
-REGION = "us-east-1"
+BUCKET_NAME = "nexus-fintech-data-lake-jose" 
+REGION = "us-east-2"
 
 class NexusDataGenerator:
     def __init__(self, mode="healthy"):
@@ -26,14 +26,16 @@ class NexusDataGenerator:
             elif error_type == 'null_id':
                 tx_id = None # Will trigger dbt not_null test failure
 
-        return {
-            "transaction_id": tx_id,
-            "user_id": f"USER-{random.randint(1, 500)}",
-            "amount": round(amount, 2),
-            "currency": "USD", # Standardizing to USD for the global project
-            "method": random.choice(["STRIPE", "BANK_TRANSFER"]),
-            "event_timestamp": datetime.now().isoformat()
-        }
+
+            return {
+                "transaction_id": tx_id,
+                "user_id": f"USER-{random.randint(1, 500)}",
+                "amount": round(amount, 2),
+                "currency": "USD",
+                "status": random.choice(["completed", "completed", "failed"]), # <--- AGREGA ESTO
+                "method": random.choice(["STRIPE", "BANK_TRANSFER"]),
+                "event_timestamp": datetime.now().isoformat()
+            }
 
 def upload_to_s3(filename, content, current_mode):
     try:
