@@ -10,5 +10,5 @@ sources:
           - name: raw_data
             description: "VARIANT column with the raw JSON"
             tests:
-              - not_null
+              - not_null  
 
