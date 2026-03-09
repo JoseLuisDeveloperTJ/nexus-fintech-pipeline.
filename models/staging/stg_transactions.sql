@@ -7,7 +7,7 @@ SELECT
      raw_data:user_id::string as user_id,
      raw_data: amount::float as amount,
      raw_data:method::string as method,
-     raw_data: currency:string as currency,
+     raw_data:currency::string as currency,
      raw_data: status::string as status,
      raw_data: event_timestamp::timestamp_ntz as event_timestamp,
 
