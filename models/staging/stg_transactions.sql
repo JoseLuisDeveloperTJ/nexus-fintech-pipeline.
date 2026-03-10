@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 
 WITH raw_data_source AS (
      SELECT * FROM {{ source('nexus_raw', 'transactions_raw') }}
