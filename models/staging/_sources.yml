@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: nexus_raw
+    database: NEXUS_FINTECH
+    schema: RAW
+    tables:
+      - name: transactions_raw
+        columns:
+          - name: raw_data
+            description: "VARIANT column with the raw JSON"
+            tests:
+              - not_null  
+
